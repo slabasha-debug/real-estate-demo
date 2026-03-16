@@ -1,0 +1,2657 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imobiliare Nord | Găsește Casa Visurilor Tale în Baia Mare</title>
+    
+    <!-- Google Fonts: Playfair Display for headings, Inter for body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Variables - Color Palette */
+        :root {
+            --navy-deep: #1B2A4A;
+            --navy-dark: #111c34;
+            --gold: #C9A84C;
+            --gold-light: #e0be63;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-mid: #e9ecef;
+            --gray-text: #6c757d;
+            --black-text: #212529;
+            --status-sale: #2e7d32; /* Green */
+            --status-rent: #1976d2; /* Blue */
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --border-radius-sm: 4px;
+            --border-radius-md: 8px;
+            --border-radius-lg: 12px;
+            
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 24px rgba(0,0,0,0.12);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset & Global */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--black-text);
+            background-color: var(--gray-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--navy-deep);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            gap: 0.5rem;
+        }
+
+        .btn-gold {
+            background-color: var(--gold);
+            color: var(--white);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--gold-light);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        .btn-navy {
+            background-color: var(--navy-deep);
+            color: var(--white);
+        }
+
+        .btn-navy:hover {
+            background-color: var(--navy-dark);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--navy-deep);
+            color: var(--navy-deep);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--navy-deep);
+            color: var(--white);
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 0;
+            z-index: 1000;
+            transition: var(--transition);
+            background-color: transparent;
+        }
+
+        header.scrolled {
+            background-color: var(--navy-deep);
+            padding: 1rem 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            font-weight: 500;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Mobile menu logic to be implemented if needed, currently hiding for simplicity */
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .logo { font-size: 1.5rem; }
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-deep) 100%);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Subtle Geometric Pattern Overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .hero-title {
+            color: var(--white);
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: #d1d5db;
+            margin-bottom: 3rem;
+            font-weight: 400;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Hero Search Bar */
+        .hero-search {
+            background-color: var(--white);
+            border-radius: var(--border-radius-md);
+            padding: 0.5rem;
+            display: flex;
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-group {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-right: 1px solid var(--gray-mid);
+        }
+
+        .search-group:last-of-type {
+            border-right: none;
+        }
+
+        .search-group i {
+            color: var(--gold);
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--black-text);
+            background: transparent;
+        }
+
+        .search-select {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--black-text);
+            cursor: pointer;
+            background: transparent;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* custom select arrow hack */
+        .select-wrapper {
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        .select-wrapper::after {
+            content: "\f078";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 0;
+            color: var(--gray-text);
+            pointer-events: none;
+            font-size: 0.8rem;
+        }
+
+        .btn-search {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border-radius: var(--border-radius-sm);
+        }
+
+        @media (max-width: 992px) {
+            .hero-title { font-size: 3.5rem; }
+            .hero-search { flex-direction: column; background: transparent; box-shadow: none; padding: 0; gap: 0.5rem; }
+            .search-group { background: var(--white); border-right: none; border-radius: var(--border-radius-sm); padding: 1rem; }
+            .btn-search { width: 100%; border-radius: var(--border-radius-sm); }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title { font-size: 2.5rem; }
+            .hero-subtitle { font-size: 1.1rem; }
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background-color: var(--navy-dark);
+            padding: 3rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            color: var(--white);
+        }
+
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray-mid);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem 1rem; }
+            .stat-number { font-size: 2.5rem; }
+        }
+
+        /* Properties Section Layout */
+        .properties-section {
+            padding: 5rem 0;
+            background-color: var(--gray-light);
+        }
+
+        .properties-container {
+            display: flex;
+            gap: 3rem;
+        }
+
+        /* Sidebar Filters */
+        .sidebar-filters {
+            width: 280px;
+            flex-shrink: 0;
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--gray-mid);
+            height: fit-content;
+            position: sticky;
+            top: 90px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--gray-mid);
+        }
+
+        .filter-header h3 {
+            font-size: 1.25rem;
+            margin: 0;
+        }
+
+        .btn-reset {
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-family: var(--font-body);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .btn-reset:hover {
+            color: var(--navy-deep);
+            text-decoration: underline;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--navy-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-mid);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            background: var(--gray-light);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .filter-input:focus {
+            border-color: var(--gold);
+            background: var(--white);
+        }
+
+        /* Toggle Buttons (Status, Rooms) */
+        .toggle-group {
+            display: flex;
+            background: var(--gray-light);
+            border-radius: var(--border-radius-sm);
+            overflow: hidden;
+            border: 1px solid var(--gray-mid);
+        }
+
+        .toggle-btn {
+            flex: 1;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border-right: 1px solid var(--gray-mid);
+            user-select: none;
+        }
+
+        .toggle-btn:last-child {
+            border-right: none;
+        }
+
+        .toggle-btn.active {
+            background: var(--navy-deep);
+            color: var(--white);
+        }
+
+        /* Checkboxes */
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--black-text);
+            cursor: pointer;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            accent-color: var(--gold);
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Dual Range Slider for Price */
+        .range-slider-wrapper {
+            position: relative;
+            margin-top: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .val-primary { color: var(--navy-deep); font-weight: 700; }
+
+        .slider-track {
+            height: 6px;
+            border-radius: 3px;
+            background: var(--gray-mid);
+            position: relative;
+        }
+
+        .slider-progress {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 3px;
+            position: absolute;
+            left: 0%;
+            right: 0%;
+        }
+
+        .range-inputs {
+            position: relative;
+        }
+
+        .range-inputs input[type="range"] {
+            position: absolute;
+            top: -6px;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background: none;
+            pointer-events: none;
+            outline: none;
+        }
+
+        .range-inputs input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--navy-deep);
+            pointer-events: auto;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .range-inputs input[type="range"]::-moz-range-thumb {
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--navy-deep);
+            pointer-events: auto;
+            cursor: pointer;
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Input grid for Surface */
+        .input-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        /* Main Content Area */
+        .listings-content {
+            flex: 1;
+        }
+
+        .listings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .results-count {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--navy-deep);
+        }
+
+        .sort-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .sort-wrapper label { font-size: 0.9rem; color: var(--gray-text); }
+        .sort-select {
+            padding: 0.5rem;
+            border: 1px solid var(--gray-mid);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Listings Grid */
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        /* Listing Card */
+        .property-card {
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            border: 1px solid var(--gray-mid);
+            overflow: hidden;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(201, 168, 76, 0.3);
+        }
+
+        .card-image-wrap {
+            height: 220px;
+            position: relative;
+            background: #e0e0e0;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            /* background gradient dynamically applied inline */
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--gold);
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card-save {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255,255,255,0.9);
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-text);
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-save:hover { color: #e53935; }
+        .card-save.saved { color: #e53935; }
+
+        .card-status {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+        
+        .status-vânzare { background: rgba(46, 125, 50, 0.9); }
+        .status-închiriere { background: rgba(25, 118, 210, 0.9); }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-price-row {
+            margin-bottom: 0.5rem;
+        }
+
+        .card-price-eur {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--navy-deep);
+        }
+
+        .card-price-ron {
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            margin-left: 0.5rem;
+        }
+
+        .card-title {
+            font-family: var(--font-body); /* Specific requirement: smaller titles use Inter */
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--black-text);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        .card-location {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-location i { color: var(--gold); }
+
+        .card-specs {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-top: 1px solid var(--gray-mid);
+            border-bottom: 1px solid var(--gray-mid);
+            margin-bottom: 1rem;
+        }
+
+        .spec-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--gray-text);
+            gap: 0.25rem;
+        }
+        
+        .spec-item i { color: var(--navy-deep); font-size: 1rem; }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .card-agent {
+            font-size: 0.8rem;
+            color: var(--gray-text);
+        }
+
+        .card-agent span {
+            display: block;
+            font-weight: 600;
+            color: var(--navy-deep);
+        }
+
+        .btn-card {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--white);
+            border-radius: var(--border-radius-md);
+            border: 1px dashed var(--gray-mid);
+            grid-column: 1 / -1;
+        }
+        .empty-state i { font-size: 3rem; color: var(--gold); margin-bottom: 1rem; }
+        .empty-state h3 { font-family: var(--font-body); margin-bottom: 0.5rem; }
+
+        /* Mobile Filters Toggle Button */
+        .btn-mobile-filters {
+            display: none;
+            width: 100%;
+            margin-bottom: 1rem;
+            background: var(--navy-deep);
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 1024px) {
+            .listings-grid { grid-template-columns: repeat(2, 1fr); }
+            .sidebar-filters { width: 250px; }
+        }
+
+        @media (max-width: 768px) {
+            .properties-container { flex-direction: column; gap: 1rem; }
+            .btn-mobile-filters { display: flex; }
+            .sidebar-filters {
+                display: none;
+                width: 100%;
+                position: static;
+                margin-bottom: 2rem;
+            }
+            .sidebar-filters.open { display: block; }
+            .listings-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+        }
+
+        @media (max-width: 576px) {
+            .listings-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Modal Details */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(17, 28, 52, 0.8);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            animation: fadeIn 0.3s ease forwards;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-content {
+            background: var(--white);
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: var(--border-radius-lg);
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(20px);
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes slideUp { to { transform: translateY(0); } }
+
+        .btn-modal-close {
+            position: absolute;
+            top: 15px; right: 15px;
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.9);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: var(--navy-deep);
+            cursor: pointer;
+            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--shadow-sm);
+        }
+        .btn-modal-close:hover { background: var(--white); color: #e53935; }
+
+        .modal-gallery {
+            position: relative;
+            height: 400px;
+            background: var(--gray-mid);
+            overflow: hidden;
+        }
+
+        .modal-slide {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-slide.active { opacity: 1; }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.7);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--navy-deep);
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .gallery-nav:hover { background: var(--white); }
+        .gallery-prev { left: 15px; }
+        .gallery-next { right: 15px; }
+
+        .gallery-dots {
+            position: absolute;
+            bottom: 15px; left: 0; right: 0;
+            display: flex; justify-content: center; gap: 8px;
+        }
+        .gallery-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        .gallery-dot.active { background: var(--white); }
+
+        .modal-body {
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .modal-body { grid-template-columns: 1fr; }
+        }
+
+        .modal-header-info { margin-bottom: 2rem; position: relative;}
+        .modal-title { font-size: 2rem; margin-bottom: 0.5rem; }
+        .modal-price { color: var(--navy-deep); font-size: 2rem; font-family: var(--font-heading); font-weight: 700; margin-bottom: 0.5rem;}
+        .modal-price span { font-size: 1rem; color: var(--gray-text); font-family: var(--font-body); font-weight: 400;}
+        .modal-loc { color: var(--gray-text); font-size: 1.1rem; }
+        
+        .modal-full-specs {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background: var(--gray-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius-md);
+        }
+        .modal-spec { display: flex; align-items: center; gap: 0.75rem; }
+        .modal-spec i { color: var(--gold); font-size: 1.25rem; width: 24px; text-align: center;}
+        .modal-spec-text { display: flex; flex-direction: column; font-size: 0.9rem;}
+        .modal-spec-text span:first-child { color: var(--gray-text); font-size: 0.8rem; }
+        .modal-spec-text span:last-child { font-weight: 600; color: var(--navy-deep); }
+
+        .modal-desc { margin-bottom: 2rem; font-size: 1.05rem; line-height: 1.7; color: var(--black-text);}
+
+        .modal-features {
+            display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem;
+        }
+        .feature-pill {
+            background: var(--white);
+            border: 1px solid var(--gray-mid);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--navy-deep);
+        }
+
+        .modal-map {
+            background: #e9ecef;
+            height: 200px;
+            border-radius: var(--border-radius-md);
+            display: flex;
+            align-items: center; justify-content: center;
+            flex-direction: column;
+            color: var(--gray-text);
+            margin-bottom: 2rem;
+        }
+        .modal-map i { font-size: 2rem; margin-bottom: 0.5rem; color: var(--navy-deep); }
+
+        .modal-agent-card {
+            background: var(--white);
+            border: 1px solid var(--gray-mid);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem;
+            text-align: center;
+            position: sticky;
+            top: 20px;
+        }
+
+        .avatar {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: var(--navy-deep);
+            color: var(--white);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; font-family: var(--font-heading);
+            margin: 0 auto 1rem;
+        }
+
+        .modal-agent-name { font-size: 1.25rem; color: var(--navy-deep); margin-bottom: 0.25rem; font-family: var(--font-heading); font-weight: 700;}
+        .modal-agent-contact { font-size: 0.95rem; color: var(--gray-text); margin-bottom: 1.5rem; }
+        
+        .agent-form .form-group { margin-bottom: 1rem; text-align: left; }
+        .agent-form label { display: block; font-size: 0.85rem; color: var(--gray-text); margin-bottom: 0.25rem; }
+        .agent-form input, .agent-form textarea, .agent-form select {
+            width: 100%; padding: 0.75rem;
+            border: 1px solid var(--gray-mid);
+            border-radius: var(--border-radius-sm);
+            font-family: var(--font-body);
+        }
+        .agent-form input:focus, .agent-form textarea:focus, .agent-form select:focus {
+            outline: none; border-color: var(--gold);
+        }
+        .agent-form button { width: 100%; margin-top: 0.5rem;}
+
+        /* Contact Section standalone */
+        .section-padding { padding: 6rem 0; }
+        
+        .contact-section { background: var(--navy-deep); color: var(--white); }
+        .section-title { font-size: 2.5rem; margin-bottom: 1rem; text-align: center; color: var(--navy-deep);}
+        .contact-section .section-title { color: var(--white); }
+        .section-subtitle { text-align: center; color: var(--gray-text); max-width: 600px; margin: 0 auto 3rem; }
+        .contact-section .section-subtitle { color: rgba(255,255,255,0.7); }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        
+        .contact-info { background: var(--white); padding: 2.5rem; border-radius: var(--border-radius-lg); color: var(--black-text); }
+        .agents-list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .agent-row { display: flex; align-items: center; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--gray-mid); }
+        .agent-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .agent-row .avatar { width: 60px; height: 60px; font-size: 1.5rem; margin: 0; }
+        .agent-row-details h4 { margin-bottom: 0.25rem; font-size: 1.1rem;}
+        .agent-row-details p { color: var(--gray-text); font-size: 0.9rem; margin-bottom: 0.25rem;}
+        .agent-listings-badge { display: inline-block; background: var(--gold-light); color: var(--navy-deep); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 700; }
+
+        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 2rem;} }
+
+        /* About Section */
+        .about-section { background: var(--white); }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+        .about-text p { font-size: 1.1rem; color: var(--gray-text); margin-bottom: 1.5rem; }
+        .about-cards { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+        .value-card { background: var(--gray-light); padding: 1.5rem; border-radius: var(--border-radius-md); display: flex; gap: 1.5rem; align-items: flex-start; }
+        .value-card i { font-size: 2rem; color: var(--gold); }
+        .value-card h4 { margin-bottom: 0.5rem; font-family: var(--font-body); }
+        .value-card p { color: var(--gray-text); font-size: 0.9rem; margin: 0;}
+
+        @media (max-width: 900px) { .about-grid { grid-template-columns: 1fr; } }
+
+        /* Testimoniale */
+        .testimonials-section { background: var(--gray-light); }
+        .testimo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+        .testimo-card { background: var(--white); padding: 2rem; border-radius: var(--border-radius-md); box-shadow: var(--shadow-sm); }
+        .testimo-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .testimo-header .avatar { width: 50px; height: 50px; font-size: 1.2rem; margin: 0;}
+        .testimo-meta h4 { font-family: var(--font-body); margin-bottom: 0.2rem;}
+        .testimo-meta span { font-size: 0.8rem; color: var(--gray-text); display: block;}
+        .stars { color: var(--gold); margin-bottom: 1rem; }
+        .testimo-quote { font-style: italic; color: var(--black-text); line-height: 1.6; }
+
+        @media (max-width: 768px) { .testimo-grid { grid-template-columns: 1fr; } }
+
+        /* Footer */
+        footer { background: var(--navy-dark); color: var(--white); padding: 4rem 0 2rem; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.5fr; gap: 3rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 3rem; margin-bottom: 2rem; }
+        .footer-logo { font-size: 2rem; margin-bottom: 1rem; color: var(--white); }
+        .footer-logo span { color: var(--gold); }
+        .footer-tagline { color: var(--gray-mid); margin-bottom: 1.5rem; max-width: 300px; }
+        .social-links { display: flex; gap: 1rem; }
+        .social-links a { width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; color: var(--white); }
+        .social-links a:hover { background: var(--gold); transform: translateY(-3px); }
+        
+        .footer-col h4 { color: var(--white); margin-bottom: 1.5rem; font-family: var(--font-body); font-size: 1.1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.8rem; }
+        .footer-links a { color: var(--gray-mid); }
+        .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+        
+        .footer-contact li { display: flex; gap: 1rem; margin-bottom: 1rem; color: var(--gray-mid); align-items: flex-start;}
+        .footer-contact i { color: var(--gold); margin-top: 5px; }
+
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; color: var(--gray-text); font-size: 0.9rem; }
+        .footer-bottom-links { display: flex; gap: 1.5rem; }
+        .footer-bottom-links a:hover { color: var(--white); }
+
+        @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 576px) { 
+            .footer-grid { grid-template-columns: 1fr; } 
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; } 
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header id="mainNav">
+        <div class="container nav-container">
+            <a href="#" class="logo">Imobiliare<span>Nord</span></a>
+            <nav class="nav-links">
+                <a href="#proprietati">Proprietăți</a>
+                <a href="#agenti">Agenți</a>
+                <a href="#despre">Despre Noi</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Găsește Casa Visurilor Tale în Baia Mare</h1>
+            <p class="hero-subtitle">Peste 200 de proprietăți disponibile — apartamente, case și terenuri în cele mai căutate zone.</p>
+            
+            <form class="hero-search" id="heroSearchForm">
+                <div class="search-group">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="heroQuery" class="search-input" placeholder="Caută după zonă sau tip...">
+                </div>
+                <div class="search-group">
+                    <i class="fas fa-home"></i>
+                    <div class="select-wrapper">
+                        <select id="heroType" class="search-select">
+                            <option value="Toate">Toate</option>
+                            <option value="apartament">Apartament</option>
+                            <option value="casă">Casă</option>
+                            <option value="teren">Teren</option>
+                            <option value="comercial">Comercial</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="search-group">
+                    <i class="fas fa-key"></i>
+                    <div class="select-wrapper">
+                        <select id="heroStatus" class="search-select">
+                            <option value="Toate">Toate</option>
+                            <option value="vânzare">De Vânzare</option>
+                            <option value="închiriere">De Închiriat</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-gold btn-search">Caută <i class="fas fa-arrow-right"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+        <div class="container stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Proprietăți</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Ani pe Piață</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1.2k</div>
+                <div class="stat-label">Clienți Mulțumiți</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Agenți Dedicați</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section (Sidebar + Grid) -->
+    <section id="proprietati" class="properties-section">
+        <div class="container">
+            <button class="btn-mobile-filters" id="btnToggleFilters"><i class="fas fa-filter"></i> Filtrează Proprietățile</button>
+            
+            <div class="properties-container">
+                <!-- Sidebar Filters -->
+                <aside class="sidebar-filters" id="sidebarFilters">
+                    <div class="filter-header">
+                        <h3>Filtre</h3>
+                        <button class="btn-reset" id="btnResetFilters">Resetează (x)</button>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Caută</label>
+                        <input type="text" id="fltQuery" class="filter-input" placeholder="Cuvânt cheie...">
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Status Tranzacție</label>
+                        <div class="toggle-group" id="fltStatusGroup">
+                            <div class="toggle-btn active" data-val="Toate">Toate</div>
+                            <div class="toggle-btn" data-val="vânzare">Vânzare</div>
+                            <div class="toggle-btn" data-val="închiriere">Închiriere</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Tip Proprietate</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltType" value="apartament"> Apartament</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltType" value="casă"> Casă</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltType" value="teren"> Teren</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltType" value="comercial"> Comercial</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Locație</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltLocation" value="Centru"> Centru</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltLocation" value="Vasile Alecsandri"> Vasile Alecsandri</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltLocation" value="Someș"> Someș</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltLocation" value="Grigorescu"> Grigorescu</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltLocation" value="Ferneziu"> Ferneziu</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Buget (EUR)</label>
+                        <div class="range-slider-wrapper">
+                            <div class="range-values">
+                                <span id="lblPriceMin" class="val-primary">0</span> - 
+                                <span id="lblPriceMax" class="val-primary">200k+</span>
+                            </div>
+                            <div class="slider-track">
+                                <div class="slider-progress" id="priceProgress"></div>
+                            </div>
+                            <div class="range-inputs">
+                                <input type="range" id="fltPriceMin" min="0" max="200000" value="0" step="1000">
+                                <input type="range" id="fltPriceMax" min="0" max="200000" value="200000" step="1000">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Număr Camere</label>
+                        <div class="toggle-group" id="fltRoomsGroup">
+                            <div class="toggle-btn active" data-val="Toate">Toate</div>
+                            <div class="toggle-btn" data-val="1">1</div>
+                            <div class="toggle-btn" data-val="2">2</div>
+                            <div class="toggle-btn" data-val="3">3</div>
+                            <div class="toggle-btn" data-val="4">4+</div>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Suprafață (mp)</label>
+                        <div class="input-grid">
+                            <input type="number" id="fltSurfaceMin" class="filter-input" placeholder="Min">
+                            <input type="number" id="fltSurfaceMax" class="filter-input" placeholder="Max">
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Mobilare</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltFurnish" value="Mobilat"> Mobilat</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltFurnish" value="Semimobilat"> Semimobilat</label>
+                        <label class="checkbox-label"><input type="checkbox" name="fltFurnish" value="Nemobilat"> Nemobilat</label>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="filter-label">Facilități Suplimentare</label>
+                        <div class="toggle-group" id="fltParkingGroup">
+                            <div class="toggle-btn active" data-val="Toate">Orice</div>
+                            <div class="toggle-btn" data-val="true">Doar cu Parcare</div>
+                        </div>
+                    </div>
+
+                </aside>
+
+                <!-- Listings Content -->
+                <div class="listings-content">
+                    <div class="listings-header">
+                        <div class="results-count" id="resultsCount">0 proprietăți găsite</div>
+                        <div class="sort-wrapper">
+                            <label for="fltSort">Sortează după:</label>
+                            <select id="fltSort" class="sort-select">
+                                <option value="newest">Cele mai noi</option>
+                                <option value="price_asc">Preț crescător</option>
+                                <option value="price_desc">Preț descrescător</option>
+                                <option value="surface_desc">Suprafață maximă</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="listings-grid" id="listingsGrid">
+                        <!-- Cards injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="despre" class="section-padding about-section">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>O agenție creată din pasiune pentru Baia Mare</h2>
+                <p>Născută în 2016, Imobiliare Nord a devenit un punct de reper pe piața locală, gestionând peste 1.200 de tranzacții reușite. Suntem o afacere de familie, ghidată de respectul față de clienți și dragostea pentru arhitectura și dezvoltarea orașului nostru.</p>
+                <p>Misiunea noastră este să transformăm procesul adesea stresant de cumpărare a unei locuințe într-o experiență calmă, transparentă și sigură. Cunoaștem fiecare stradă, fiecare cartier și fiecare dezvoltator din zonă.</p>
+                <a href="#contact" class="btn btn-outline" style="margin-top: 1rem;">Cunoaște Echipa</a>
+            </div>
+            <div class="about-cards">
+                <div class="value-card">
+                    <i class="fas fa-handshake"></i>
+                    <div>
+                        <h4>Transparență Totală</h4>
+                        <p>Fără comisioane ascunse, fără surprize. Îți oferim toate datele tehnice și financiare înainte de vizionare.</p>
+                    </div>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <div>
+                        <h4>Cunoaștere Locală</h4>
+                        <p>Agenți născuți și crescuți în Baia Mare. Știm exact valoarea reală a pieței în fiecare cartier, de la Centrul Vechi la Ferneziu.</p>
+                    </div>
+                </div>
+                <div class="value-card">
+                    <i class="fas fa-file-contract"></i>
+                    <div>
+                        <h4>Suport Complet</h4>
+                        <p>Te asistăm juridic, notarial și te consiliem în obținerea creditelor ipotecare. Suntem alături de tine până la înmânarea cheilor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section-padding testimonials-section">
+        <div class="container">
+            <h2 class="section-title">Ce spun clienții noștri</h2>
+            <p class="section-subtitle">Fiecare tranzacție reprezintă un vis împlinit. Citește experiențele celor care au ales Imobiliare Nord.</p>
+            
+            <div class="testimo-grid">
+                <div class="testimo-card">
+                    <div class="testimo-header">
+                        <div class="avatar">AM</div>
+                        <div class="testimo-meta">
+                            <h4>Alexandru M.</h4>
+                            <span>A cumpărat un apartament în Someș</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimo-quote">"Colaborarea cu domnul Andrei a fost impecabilă. Am apreciat enorm sinceritatea cu privire la avantajele și dezavantajele fiecărui apartament vizitat. Recomand din tot sufletul!"</p>
+                </div>
+                
+                <div class="testimo-card">
+                    <div class="testimo-header">
+                        <div class="avatar">CD</div>
+                        <div class="testimo-meta">
+                            <h4>Corina D.</h4>
+                            <span>A închiriat un spațiu comercial</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimo-quote">"Aveam nevoie urgentă de un spațiu pentru biroul meu. Ioana m-a ajutat să găsesc exact vadul pe care mi-l doream, negociind un preț foarte bun pentru mine."</p>
+                </div>
+
+                <div class="testimo-card">
+                    <div class="testimo-header">
+                        <div class="avatar">FV</div>
+                        <div class="testimo-meta">
+                            <h4>Familia Varga</h4>
+                            <span>A vândut o casă în Ferneziu</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <p class="testimo-quote">"Mihai a preluat complet grija prezentărilor și a obținut certificatul energetic pentru noi. Tranzacția s-a încheiat rapid și la prețul corect, fără stres suplimentar."</p>
+                </div>
+
+                <div class="testimo-card">
+                    <div class="testimo-header">
+                        <div class="avatar">RP</div>
+                        <div class="testimo-meta">
+                            <h4>Radu P.</h4>
+                            <span>A investit într-un teren</span>
+                        </div>
+                    </div>
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                    <p class="testimo-quote">"Echipa are informații reale despre PUZ-uri și perspectivele de dezvoltare din Baia Mare. M-au scutit de decizii proaste. Cu siguranță îi voi contacta la următoarea investiție."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Standalone Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <div class="container">
+            <h2 class="section-title">Hai să stăm de vorbă</h2>
+            <p class="section-subtitle">Suntem aici să răspundem oricărei întrebări. Contactează-ne pentru o evaluare gratuită sau pentru a programa o vizionare.</p>
+            
+            <div class="contact-grid">
+                <div class="contact-form-wrap">
+                    <div class="contact-info">
+                        <h3 style="margin-bottom:1.5rem; font-family: var(--font-body);">Trimite-ne un mesaj</h3>
+                        <form class="agent-form" id="mainContactForm">
+                            <div class="form-group">
+                                <label>Nume complet</label>
+                                <input type="text" required placeholder="Ex: Popescu Ion">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefon</label>
+                                <input type="tel" required placeholder="07XX XXX XXX">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" required placeholder="adresa@email.com">
+                            </div>
+                            <div class="form-group" style="display: flex; gap: 1rem; align-items: center;">
+                                <label>Preferință:</label>
+                                <label style="display:inline; margin:0;"><input type="radio" name="pref" value="Telefon" checked> Telefon</label>
+                                <label style="display:inline; margin:0;"><input type="radio" name="pref" value="WhatsApp"> WhatsApp</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Mesaj</label>
+                                <textarea rows="3" placeholder="Cu ce te putem ajuta?"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-gold">Trimite Mesajul</button>
+                            <p id="mainFormSuccess" style="display:none; color: var(--status-sale); margin-top: 1rem; font-size: 0.9rem;"><i class="fas fa-check-circle"></i> Mesajul a fost trimis cu succes. Te vom contacta curând!</p>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="agenti">
+                    <h3 style="margin-bottom:1.5rem; font-family: var(--font-body); color: var(--white);">Echipa Noastră</h3>
+                    <div class="agents-list" id="globalAgentsList">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col" style="max-width: 300px;">
+                    <a href="#" class="logo footer-logo">Imobiliare<span>Nord</span></a>
+                    <p class="footer-tagline">Agenția ta de încredere din inima Maramureșului. Găsim case, construim familii.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Linkuri Rapide</h4>
+                    <div class="footer-links">
+                        <a href="#proprietati">Toate Proprietățile</a>
+                        <a href="#agenti">Echipa Noastră</a>
+                        <a href="#despre">Despre Noi</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Caută după Tip</h4>
+                    <div class="footer-links">
+                        <a href="#" onclick="document.querySelector('input[value=\'apartament\']').click(); window.scrollTo({top: document.getElementById('proprietati').offsetTop, behavior: 'smooth'}); return false;">Apartamente</a>
+                        <a href="#" onclick="document.querySelector('input[value=\'casă\']').click(); window.scrollTo({top: document.getElementById('proprietati').offsetTop, behavior: 'smooth'}); return false;">Case și Vile</a>
+                        <a href="#" onclick="document.querySelector('input[value=\'teren\']').click(); window.scrollTo({top: document.getElementById('proprietati').offsetTop, behavior: 'smooth'}); return false;">Terenuri</a>
+                        <a href="#" onclick="document.querySelector('input[value=\'comercial\']').click(); window.scrollTo({top: document.getElementById('proprietati').offsetTop, behavior: 'smooth'}); return false;">Spații Comerciale</a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-map-marker-alt"></i> Strada Victoriei 22,<br>Baia Mare, România</li>
+                        <li><i class="fas fa-phone"></i> +40 362 111 222</li>
+                        <li><i class="fas fa-envelope"></i> contact@imobiliarenord.ro</li>
+                        <li><i class="fas fa-clock"></i> Luni - Vineri: 09:00 - 18:00<br>Sâmbătă: 10:00 - 14:00</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Imobiliare Nord Baia Mare. Toate drepturile rezervate.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Politică de Confidențialitate</a>
+                    <a href="#">Termeni și Condiții</a>
+                    <a href="#">Hartă Site</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Property Detail Modal -->
+    <div class="modal-overlay" id="propertyModal">
+        <div class="modal-content">
+            <button class="btn-modal-close" onclick="closeModal()">&times;</button>
+            
+            <!-- Image structure updated by JS -->
+            <div class="modal-gallery" id="modalGallery">
+                <!-- Slides go here -->
+                <button class="gallery-nav gallery-prev" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
+                <button class="gallery-nav gallery-next" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
+                <div class="gallery-dots" id="modalDots"></div>
+            </div>
+
+            <div class="modal-body">
+                <div class="modal-content-main">
+                    <div class="modal-header-info" id="modalHeaderInfo">
+                        <!-- Badge, pills, Title, Price populated by JS -->
+                    </div>
+                    
+                    <div class="modal-full-specs" id="modalSpecsGrid">
+                        <!-- Icons populated by JS -->
+                    </div>
+
+                    <h3 style="margin-bottom: 1rem;">Descriere</h3>
+                    <div class="modal-desc" id="modalDesc"></div>
+                    
+                    <h3 style="margin-bottom: 1rem;">Facilități și dotări</h3>
+                    <div class="modal-features" id="modalFeatures"></div>
+
+                    <div class="modal-map">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span id="modalMapAddress">Adresa aproximativă pe hartă</span>
+                    </div>
+                </div>
+                
+                <div class="modal-sidebar">
+                    <div class="modal-agent-card" id="modalAgentWrap">
+                        <!-- Agent HTML built by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placeholder for core logic -->
+    <script>
+        // Navbar Scroll Effect
+        const header = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Generate 18 Fake Real Estate Listings
+        // Gradients for images: warm beige/gray/cream
+        const imgGradients = [
+            "url('images/living_1.png') center/cover",
+            "url('images/living_1.png') center/cover",
+            "url('images/living_1.png') center/cover",
+            "url('images/living_1.png') center/cover",
+            "url('images/living_1.png') center/cover",
+            "url('images/living_1.png') center/cover"
+        ];
+
+        function getImages() {
+            // shuffle gradients to create unique 5-image arrays for each listing
+            return [...imgGradients].sort(() => 0.5 - Math.random()).slice(0, 5);
+        }
+
+        const dataListings = [
+            {
+                id: 1,
+                title: 'Apartament 3 camere, Ultracentral',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 115000,
+                priceRON: 115000 * 5,
+                location: 'Centru',
+                surface: 78,
+                rooms: 3,
+                floor: '2/4',
+                year: 1985,
+                furnished: 'Mobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Apartament spațios situat în inima orașului Baia Mare, ideal pentru o familie. Renovare completă în anul 2021 cu materiale premium. Priveliște superbă către parcul central.',
+                features: ['Balcon', 'Parcare subterană', 'Aer Condiționat', 'Complet utilat', 'Zonă liniștită', 'Interfon'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: 'EXCLUSIV',
+                images: getImages()
+            },
+            {
+                id: 2,
+                title: 'Garsonieră modernă, Vasile Alecsandri',
+                type: 'apartament',
+                status: 'închiriere',
+                price: 250,
+                priceRON: 250 * 5,
+                location: 'Vasile Alecsandri',
+                surface: 35,
+                rooms: 1,
+                floor: '1/4',
+                year: 1990,
+                furnished: 'Mobilat',
+                heating: 'Termoficare',
+                parking: false,
+                description: 'Oportunitate excelentă de închiriere! Garsonieră curată, proaspăt zugrăvită, complet mobilată și utilată. Aproape de stația de autobuz și supermarketuri.',
+                features: ['Renovat recent', 'Mașină de spălat', 'Tv Smart', 'Cheltuieli mici'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 3,
+                title: 'Casă familială cu grădină, Ferneziu',
+                type: 'casă',
+                status: 'vânzare',
+                price: 180000,
+                priceRON: 180000 * 5,
+                location: 'Ferneziu',
+                surface: 140,
+                rooms: 4,
+                floor: 'P+1',
+                year: 2010,
+                furnished: 'Semimobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Proprietate deosebită situată într-o zonă ferită de agitație, perfectă pentru cei ce iubesc natura. Dispune de 500 mp teren liber și terasă generoasă. Construcție din cărămidă.',
+                features: ['Curte privată', 'Zonă BBQ', '2 Băi', 'Dressing', 'Acces auto', 'Vedere la munte'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: 'NOU',
+                images: getImages()
+            },
+            {
+                id: 4,
+                title: 'Apartament 2 camere, construcție nouă',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 85000,
+                priceRON: 85000 * 5,
+                location: 'Someș',
+                surface: 55,
+                rooms: 2,
+                floor: '3/6',
+                year: 2023,
+                furnished: 'Nemobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Ansamblu rezidențial nou, finalizat în 2023. Apartamentul se predă la stadiul de alb, oferindu-vă posibilitatea de a-l personaliza după bunul plac. Lift modern disponibil.',
+                features: ['Construcție nouă', 'Încălzire în pardoseală', 'Geamuri tripan', 'Lift', 'Videointerfon'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 5,
+                title: 'Teren intravilan excelent investiție',
+                type: 'teren',
+                status: 'vânzare',
+                price: 35000,
+                priceRON: 35000 * 5,
+                location: 'Grigorescu',
+                surface: 800,
+                rooms: null,
+                floor: null,
+                year: null,
+                furnished: null,
+                heating: null,
+                parking: null,
+                description: 'Teren cu potențial uriaș situat în cartierul Grigorescu. Front stradal 18m, utilități la poartă (apă, gaz, curent, canalizare). Ideal pentru construcție casă unifamilială.',
+                features: ['Utilități disponibile', 'Zonă în dezvoltare', 'Front stradal larg', 'Acte la zi'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: 'REDUS',
+                images: getImages()
+            },
+            {
+                id: 6,
+                title: 'Spațiu comercial, vad pietonal',
+                type: 'comercial',
+                status: 'închiriere',
+                price: 600,
+                priceRON: 600 * 5,
+                location: 'Centru',
+                surface: 45,
+                rooms: null,
+                floor: 'Parter',
+                year: 2005,
+                furnished: 'Nemobilat',
+                heating: 'Centrală de bloc',
+                parking: false,
+                description: 'Spațiu comercial pretabil pentru birou notar, agenție sau magazin. Vitrină stradală mare de 4m. Zonă cu trafic intens pietonal și auto în centrul vechi.',
+                features: ['Vitrină stradală', 'Grup sanitar', 'Alarmă', 'Posibilitate reclamă'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 7,
+                title: 'Apartament 4 camere lux',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 155000,
+                priceRON: 155000 * 5,
+                location: 'Someș',
+                surface: 105,
+                rooms: 4,
+                floor: 'Ultimul etaj',
+                year: 2018,
+                furnished: 'Mobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Penthouse impresionant ce domină cartierul Someș. Finisaje extravagante, terasă de 30 mp circulabilă. Se vinde exact cum se prezintă în fotografii, incluzând electrocasnice high-end.',
+                features: ['Terasă panoramică', 'Finisaje lux', 'Dressing room', 'Două locuri parcare', 'Smart Home'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: 'EXCLUSIV',
+                images: getImages()
+            },
+            {
+                id: 8,
+                title: 'Închiriere Ap. 2 camere',
+                type: 'apartament',
+                status: 'închiriere',
+                price: 320,
+                priceRON: 320 * 5,
+                location: 'Vasile Alecsandri',
+                surface: 50,
+                rooms: 2,
+                floor: '2/4',
+                year: 1980,
+                furnished: 'Mobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Imobil primitor situat la etajul 2, decomandat. Costuri de întreținere reduse pe timpul iernii datorită izolației exterioare groase. Perfect pentru un cuplu tânăr.',
+                features: ['Izolat termic', 'Balcon închis', 'Pet friendly', 'Mobilat modern'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 9,
+                title: 'Casă veche de renovat',
+                type: 'casă',
+                status: 'vânzare',
+                price: 65000,
+                priceRON: 65000 * 5,
+                location: 'Ferneziu',
+                surface: 80,
+                rooms: 3,
+                floor: 'Parter',
+                year: 1972,
+                furnished: 'Nemobilat',
+                heating: 'Termoficare',
+                parking: false,
+                description: 'Oportunitate pentru investitori sau familii care doresc să își construiască visul. Casa necesită renovare totală, dar este stabilă fonic și structural. Teren 400 mp asociat aferent.',
+                features: ['Zonă liniștită', 'Teren generos', 'Preț negociabil', 'Fântână în curte'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: 'REDUS',
+                images: getImages()
+            },
+            {
+                id: 10,
+                title: 'Apartament 3 camere Grigorescu',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 92000,
+                priceRON: 92000 * 5,
+                location: 'Grigorescu',
+                surface: 70,
+                rooms: 3,
+                floor: '1/4',
+                year: 1988,
+                furnished: 'Semimobilat',
+                heating: 'Centrală proprie',
+                parking: false,
+                description: 'Amplasat ideal aproape de liceu și piață. Apartamentul este parțial modernizat, având uși schimbate și baie renovată complet în 2020. Excelent compartimentat.',
+                features: ['Aproape de școli', 'Decomandat', 'Beci / Boxă', 'Geam la baie'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 11,
+                title: 'Duplex premium, 4 camere',
+                type: 'casă',
+                status: 'vânzare',
+                price: 145000,
+                priceRON: 145000 * 5,
+                location: 'Someș',
+                surface: 120,
+                rooms: 4,
+                floor: 'P+M',
+                year: 2019,
+                furnished: 'Nemobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Jumătate de duplex pe malul Someșului. Arhitectură modernă, suprafețe vitrate mari, perete comun izolat fonic. Curtea este amenajată cu gazon tip rulou.',
+                features: ['Arhitectură modernă', '3 Băi', 'Design minimalist', 'Porți automate', 'Zonă promenadă'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: 'NOU',
+                images: getImages()
+            },
+            {
+                id: 12,
+                title: 'Apartament 1 cameră, mobilat',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 49000,
+                priceRON: 49000 * 5,
+                location: 'Vasile Alecsandri',
+                surface: 40,
+                rooms: 1,
+                floor: '4/4',
+                year: 1982,
+                furnished: 'Mobilat',
+                heating: 'Centrală proprie',
+                parking: false,
+                description: 'Pretabil pentru regim hotelier (Airbnb/Booking). Garsonieră extinsă, compartimentare inteligentă. Acoperișul blocului a fost refăcut integral anul trecut de asociație.',
+                features: ['Izolație tavan', 'Mobilă la comandă', 'Aproape de spital', 'Ideal investiție'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 13,
+                title: 'Ap. 2 camere lux, Central',
+                type: 'apartament',
+                status: 'închiriere',
+                price: 450,
+                priceRON: 450 * 5,
+                location: 'Centru',
+                surface: 60,
+                rooms: 2,
+                floor: '5/8',
+                year: 2015,
+                furnished: 'Mobilat',
+                heating: 'Centrală de bloc',
+                parking: true,
+                description: 'Apartament de business în bloc rezidențial central. Finisaje de înaltă calitate, mobilier import Italia, parcare subterană securizată 24/7. Disponibil imediat.',
+                features: ['Parcare subterană', 'Pază integrată', 'AC', 'Vedere oraș'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: 'EXCLUSIV',
+                images: getImages()
+            },
+            {
+                id: 14,
+                title: 'Teren intravilan 500mp',
+                type: 'teren',
+                status: 'vânzare',
+                price: 25000,
+                priceRON: 25000 * 5,
+                location: 'Ferneziu',
+                surface: 500,
+                rooms: null,
+                floor: null,
+                year: null,
+                furnished: null,
+                heating: null,
+                parking: null,
+                description: 'Teren plat perfect pentru cabană sau casă mică unifamilială. Împrejmuit pe două laturi. Drum de servitute pietruit recent. Curent existent la limită.',
+                features: ['Parcelă plată', 'Curent electric', 'Liniște totală'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 15,
+                title: 'Casă 3 camere, curte comună',
+                type: 'casă',
+                status: 'vânzare',
+                price: 78000,
+                priceRON: 78000 * 5,
+                location: 'Centru',
+                surface: 90,
+                rooms: 3,
+                floor: 'Parter',
+                year: 1950,
+                furnished: 'Semimobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Imobil istoric, casă situată în curte comună cu alți 2 proprietari civilizați. Tavan înalt de 3.2m, camere foarte încăpătoare. Spațiu aferent pentru terasă și loc de parcare.',
+                features: ['Tavane înalte', 'Zonă istorică', 'Beci boltit', 'Grosime 60cm cărămidă'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 16,
+                title: 'Birou modern',
+                type: 'comercial',
+                status: 'închiriere',
+                price: 300,
+                priceRON: 300 * 5,
+                location: 'Grigorescu',
+                surface: 40,
+                rooms: null,
+                floor: '1/2',
+                year: 2008,
+                furnished: 'Semimobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Birou luminos format dintr-o singură clăpere tip open space plus grup sanitar. Etaj 1 într-o clădire de biouri mică. Sistem AC Daikin, mochetă trafic intens.',
+                features: ['Internet fibră optică', 'Aer condiționat', 'Costuri mici', 'Parcare client'],
+                agent: 'Mihai Bran',
+                agentPhone: '0722555666',
+                agentEmail: 'mihai.b@imobiliarenord.ro',
+                badge: null,
+                images: getImages()
+            },
+            {
+                id: 17,
+                title: 'Apartament 2 camere, clasic',
+                type: 'apartament',
+                status: 'vânzare',
+                price: 64000,
+                priceRON: 64000 * 5,
+                location: 'Vasile Alecsandri',
+                surface: 52,
+                rooms: 2,
+                floor: '3/4',
+                year: 1986,
+                furnished: 'Nemobilat',
+                heating: 'Termoficare',
+                parking: false,
+                description: 'Proprietate ne-renovată recent, vândută fix cum arată, oferind cumpărătorului libertatea de a alege designul. Spațiu bine împărțit, cu balcon generos pe lungimea sufrageriei.',
+                features: ['Balcon mare', 'A doua mână', 'Scară curată'],
+                agent: 'Andrei Moldovan',
+                agentPhone: '0744111222',
+                agentEmail: 'andrei.m@imobiliarenord.ro',
+                badge: 'REDUS',
+                images: getImages()
+            },
+            {
+                id: 18,
+                title: 'Ap. 3 camere, vedere munte',
+                type: 'apartament',
+                status: 'închiriere',
+                price: 350,
+                priceRON: 350 * 5,
+                location: 'Someș',
+                surface: 75,
+                rooms: 3,
+                floor: '4/4',
+                year: 2000,
+                furnished: 'Mobilat',
+                heating: 'Centrală proprie',
+                parking: true,
+                description: 'Foarte luminos și călduros. Acest apartament oferă un view panoramic spre masivul muntos din nordul orașului. Se închiriază preferabil pe termen lung (+1 an).',
+                features: ['Vedere panoramică', 'Orientare Sud', 'Izolație interioară', 'Mașină vase'],
+                agent: 'Ioana Popa',
+                agentPhone: '0755333444',
+                agentEmail: 'ioana.p@imobiliarenord.ro',
+                badge: 'NOU',
+                images: getImages()
+            }
+        ];
+
+        // Testing data mapping
+        console.log(`Loaded ${dataListings.length} mock listings.`);
+        
+        let savedProperties = JSON.parse(localStorage.getItem('savedProperties')) || [];
+        let currentStatusFilter = 'Toate'; // 'Toate', 'vânzare', 'închiriere'
+        const maxSalePrice = 200000;
+        const maxRentPrice = 1000;
+
+        // -- Dual Range Slider Logic --
+        const priceMinInp = document.getElementById('fltPriceMin');
+        const priceMaxInp = document.getElementById('fltPriceMax');
+        const priceProgress = document.getElementById('priceProgress');
+        const lblPriceMin = document.getElementById('lblPriceMin');
+        const lblPriceMax = document.getElementById('lblPriceMax');
+
+        function formatPrice(val, isRental) {
+            if (val >= (isRental ? maxRentPrice : maxSalePrice)) {
+                return isRental ? '1.000+' : '200.000+';
+            }
+            return new Intl.NumberFormat('ro-RO').format(val);
+        }
+
+        function updateSliderUI(isRental) {
+            let maxTotal = isRental ? maxRentPrice : maxSalePrice;
+            let step = isRental ? 50 : 1000;
+
+            priceMinInp.max = maxTotal;
+            priceMinInp.step = step;
+            priceMaxInp.max = maxTotal;
+            priceMaxInp.step = step;
+
+            let minVal = parseInt(priceMinInp.value);
+            let maxVal = parseInt(priceMaxInp.value);
+
+            if (maxVal > maxTotal) { maxVal = maxTotal; priceMaxInp.value = maxVal; }
+            if (minVal > maxVal) { minVal = 0; priceMinInp.value = 0; }
+
+            lblPriceMin.textContent = formatPrice(minVal, isRental);
+            lblPriceMax.textContent = formatPrice(maxVal, isRental);
+
+            let percentMin = (minVal / maxTotal) * 100;
+            let percentMax = (maxVal / maxTotal) * 100;
+            priceProgress.style.left = percentMin + "%";
+            priceProgress.style.right = (100 - percentMax) + "%";
+        }
+
+        function setSliderMaxLimits(statusType) {
+            const isRental = statusType === 'închiriere';
+            priceMinInp.value = 0;
+            priceMaxInp.value = isRental ? maxRentPrice : maxSalePrice;
+            updateSliderUI(isRental);
+            renderListings(); // trigger re-render
+        }
+
+        priceMinInp.addEventListener('input', function() {
+            let minVal = parseInt(priceMinInp.value);
+            let maxVal = parseInt(priceMaxInp.value);
+            if (minVal >= maxVal) priceMinInp.value = maxVal - parseInt(priceMinInp.step);
+            updateSliderUI(currentStatusFilter === 'închiriere');
+            renderListings();
+        });
+
+        priceMaxInp.addEventListener('input', function() {
+            let minVal = parseInt(priceMinInp.value);
+            let maxVal = parseInt(priceMaxInp.value);
+            if (maxVal <= minVal) priceMaxInp.value = minVal + parseInt(priceMaxInp.step);
+            updateSliderUI(currentStatusFilter === 'închiriere');
+            renderListings();
+        });
+
+        // Initialize Slider
+        updateSliderUI(false);
+
+
+        // -- Filter UI Interactions --
+        
+        // Generic Toggle Groups (Status, Rooms, Parking)
+        function initToggleGroup(groupId, onClickCallback) {
+            const container = document.getElementById(groupId);
+            if(!container) return;
+            const btns = container.querySelectorAll('.toggle-btn');
+            btns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    btns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    onClickCallback(btn.getAttribute('data-val'));
+                });
+            });
+        }
+
+        let filterState = {
+            query: '',
+            status: 'Toate',
+            types: [],
+            locations: [],
+            rooms: 'Toate',
+            surfaceMin: '',
+            surfaceMax: '',
+            furnish: [],
+            parkingOnly: false,
+            sort: 'newest'
+        };
+
+        // Status Toggle
+        initToggleGroup('fltStatusGroup', (val) => {
+            currentStatusFilter = val;
+            filterState.status = val;
+            setSliderMaxLimits(val);
+        });
+
+        // Rooms Toggle
+        initToggleGroup('fltRoomsGroup', (val) => {
+            filterState.rooms = val;
+            renderListings();
+        });
+
+        // Parking Toggle
+        initToggleGroup('fltParkingGroup', (val) => {
+            filterState.parkingOnly = val === 'true';
+            renderListings();
+        });
+
+        // Text query
+        document.getElementById('fltQuery').addEventListener('input', (e) => {
+            filterState.query = e.target.value.toLowerCase();
+            renderListings();
+        });
+
+        // Surface inputs
+        document.getElementById('fltSurfaceMin').addEventListener('input', (e) => { filterState.surfaceMin = e.target.value; renderListings(); });
+        document.getElementById('fltSurfaceMax').addEventListener('input', (e) => { filterState.surfaceMax = e.target.value; renderListings(); });
+
+        // Sorting
+        document.getElementById('fltSort').addEventListener('change', (e) => {
+            filterState.sort = e.target.value;
+            renderListings();
+        });
+
+        // Checkboxes array builder
+        function updateCheckboxState(nameStr, stateArrayKey) {
+            const boxes = document.querySelectorAll(`input[name="${nameStr}"]`);
+            boxes.forEach(box => {
+                box.addEventListener('change', () => {
+                    filterState[stateArrayKey] = Array.from(boxes).filter(i => i.checked).map(i => i.value);
+                    renderListings();
+                });
+            });
+        }
+        updateCheckboxState('fltType', 'types');
+        updateCheckboxState('fltLocation', 'locations');
+        updateCheckboxState('fltFurnish', 'furnish');
+
+        // Reset Filters
+        document.getElementById('btnResetFilters').addEventListener('click', () => {
+            document.getElementById('fltQuery').value = '';
+            document.getElementById('fltSurfaceMin').value = '';
+            document.getElementById('fltSurfaceMax').value = '';
+            
+            document.querySelectorAll('input[type="checkbox"]').forEach(c => c.checked = false);
+            
+            // reset groups to 'Toate'
+            document.querySelectorAll('.toggle-group').forEach(group => {
+                const btns = group.querySelectorAll('.toggle-btn');
+                btns.forEach(b => b.classList.remove('active'));
+                btns[0].classList.add('active'); // assuming Toate is first index
+            });
+
+            document.getElementById('fltSort').value = 'newest';
+
+            filterState = {
+                query: '', status: 'Toate', types: [], locations: [],
+                rooms: 'Toate', surfaceMin: '', surfaceMax: '',
+                furnish: [], parkingOnly: false, sort: 'newest'
+            };
+            
+            currentStatusFilter = 'Toate';
+            setSliderMaxLimits('Toate');
+        });
+
+        // Mobile Filter Toggle
+        const btnToggleFilters = document.getElementById('btnToggleFilters');
+        const sidebarFilters = document.getElementById('sidebarFilters');
+        btnToggleFilters.addEventListener('click', () => {
+            sidebarFilters.classList.toggle('open');
+            btnToggleFilters.innerHTML = sidebarFilters.classList.contains('open') ? 
+                '<i class="fas fa-times"></i> Închide Filtrele' : '<i class="fas fa-filter"></i> Filtrează Proprietățile';
+        });
+
+        // -- Rendering Logic --
+        const gridContainer = document.getElementById('listingsGrid');
+        const resultsCountStr = document.getElementById('resultsCount');
+
+        function toggleSaveProperty(e, id) {
+            e.stopPropagation(); // prevent card click
+            const btn = e.currentTarget;
+            if(savedProperties.includes(id)) {
+                savedProperties = savedProperties.filter(i => i !== id);
+                btn.classList.remove('saved');
+                btn.innerHTML = '<i class="far fa-heart"></i>';
+            } else {
+                savedProperties.push(id);
+                btn.classList.add('saved');
+                btn.innerHTML = '<i class="fas fa-heart"></i>';
+            }
+            localStorage.setItem('savedProperties', JSON.stringify(savedProperties));
+        }
+
+        // Expose function globally for inline onclick
+        window.toggleSave = toggleSaveProperty;
+
+        function renderListings() {
+            // 1. Filter
+            let filtered = dataListings.filter(item => {
+                // Text Query
+                if(filterState.query) {
+                    const text = (item.title + ' ' + item.location + ' ' + item.description).toLowerCase();
+                    if(!text.includes(filterState.query)) return false;
+                }
+                
+                // Status
+                if(filterState.status !== 'Toate' && item.status !== filterState.status) return false;
+                
+                // Arrays (Type, Location, Furnish)
+                if(filterState.types.length > 0 && !filterState.types.includes(item.type)) return false;
+                if(filterState.locations.length > 0 && !filterState.locations.includes(item.location)) return false;
+                if(filterState.furnish.length > 0 && !filterState.furnish.includes(item.furnished)) return false;
+                
+                // Price
+                const maxAllowed = filterState.status === 'închiriere' ? maxRentPrice : maxSalePrice;
+                const minP = parseInt(priceMinInp.value);
+                const maxP = parseInt(priceMaxInp.value);
+                // if max slider is at the absolute max, ignore upper limit
+                if (item.price < minP) return false;
+                if (maxP < maxAllowed && item.price > maxP) return false;
+
+                // Surface
+                if(filterState.surfaceMin && item.surface < parseInt(filterState.surfaceMin)) return false;
+                if(filterState.surfaceMax && item.surface > parseInt(filterState.surfaceMax)) return false;
+
+                // Rooms
+                if(filterState.rooms !== 'Toate' && item.rooms !== null) {
+                    if(filterState.rooms === '4+') {
+                        if(item.rooms < 4) return false;
+                    } else {
+                        if(item.rooms !== parseInt(filterState.rooms)) return false;
+                    }
+                }
+
+                // Parking
+                if(filterState.parkingOnly && !item.parking) return false;
+
+                return true;
+            });
+
+            // 2. Sort
+            filtered.sort((a,b) => {
+                if(filterState.sort === 'price_asc') return a.price - b.price;
+                if(filterState.sort === 'price_desc') return b.price - a.price;
+                if(filterState.sort === 'surface_desc') return b.surface - a.surface;
+                // 'newest' -> use id descending as proxy for date added
+                return b.id - a.id; 
+            });
+
+            // 3. Render HTML
+            resultsCountStr.textContent = `${filtered.length} proprietăț${filtered.length === 1 ? 'e găsită' : 'i găsite'}`;
+            gridContainer.innerHTML = '';
+
+            if (filtered.length === 0) {
+                gridContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-search-minus"></i>
+                        <h3>Nu am găsit proprietăți corespunzătoare</h3>
+                        <p>Încearcă să relaxezi filtrele pentru a vedea mai multe rezultate.</p>
+                        <button class="btn btn-outline" style="margin-top: 1rem;" onclick="document.getElementById('btnResetFilters').click()">Resetează toate filtrele</button>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(item => {
+                const isSaved = savedProperties.includes(item.id);
+                const saveIcon = isSaved ? '<i class="fas fa-heart"></i>' : '<i class="far fa-heart"></i>';
+                const heartClass = isSaved ? 'card-save saved' : 'card-save';
+                const badgeHtml = item.badge ? `<div class="card-badge">${item.badge}</div>` : '';
+                
+                const roomStr = item.rooms ? `<div class="spec-item"><i class="fas fa-door-open"></i><span>${item.rooms} cam</span></div>` : '';
+                const floorStr = item.floor ? `<div class="spec-item"><i class="fas fa-layer-group"></i><span>${item.floor}</span></div>` : '';
+                
+                const formatCur = new Intl.NumberFormat('ro-RO').format(item.price);
+                const formatRon = new Intl.NumberFormat('ro-RO').format(item.priceRON);
+                
+                const statusClass = item.status === 'vânzare' ? 'status-vânzare' : 'status-închiriere';
+                const statusName = item.status === 'vânzare' ? 'De Vânzare' : 'De Închiriat';
+
+                const cardHTML = `
+                    <div class="property-card" onclick="openModal(${item.id})">
+                        <div class="card-image-wrap">
+                            <div class="card-image" style="background: ${item.images[0]}"></div>
+                            ${badgeHtml}
+                            <div class="${heartClass}" onclick="toggleSave(event, ${item.id})">${saveIcon}</div>
+                            <div class="card-status ${statusClass}">${statusName}</div>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-price-row">
+                                <span class="card-price-eur">&euro;${formatCur}</span>
+                                <span class="card-price-ron">${formatRon} RON</span>
+                            </div>
+                            <h3 class="card-title">${item.title}</h3>
+                            <div class="card-location"><i class="fas fa-map-marker-alt"></i> ${item.location}, Baia Mare</div>
+                            
+                            <div class="card-specs">
+                                ${roomStr}
+                                <div class="spec-item"><i class="fas fa-vector-square"></i><span>${item.surface} mp</span></div>
+                                ${floorStr}
+                            </div>
+                            
+                            <div class="card-footer">
+                                <div class="card-agent">Agent: <span>${item.agent}</span></div>
+                                <button class="btn btn-outline btn-card">Vezi Detalii</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                gridContainer.insertAdjacentHTML('beforeend', cardHTML);
+            });
+        }
+
+        // Initial render
+        renderListings();
+        renderGlobalAgents();
+
+        // Hero Search Form bridge
+        document.getElementById('heroSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // map hero values to sidebar filters
+            const heroQuery = document.getElementById('heroQuery').value;
+            const heroType = document.getElementById('heroType').value;
+            const heroStatus = document.getElementById('heroStatus').value;
+
+            // Reset current sidebar state slightly to accommodate hero click cleanly
+            document.getElementById('btnResetFilters').click();
+            
+            if(heroQuery) {
+                document.getElementById('fltQuery').value = heroQuery;
+                filterState.query = heroQuery.toLowerCase();
+            }
+
+            if(heroStatus !== 'Toate') {
+                const btnStatus = document.querySelector(`#fltStatusGroup .toggle-btn[data-val="${heroStatus}"]`);
+                if(btnStatus) btnStatus.click();
+            }
+
+            if(heroType !== 'Toate') {
+                const checkType = document.querySelector(`input[name="fltType"][value="${heroType}"]`);
+                if(checkType) checkType.click(); // will trigger change event
+            } else {
+                renderListings(); // Force render if just text query was used
+            }
+
+            // scroll to listings
+            const yOffset = -80; // account for sticky nav
+            const element = document.getElementById('proprietati');
+            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({top: y, behavior: 'smooth'});
+        });
+        
+        // -- Global Agents logic for Standalone Section --
+        function renderGlobalAgents() {
+            const container = document.getElementById('globalAgentsList');
+            // Define fixed specializations per unique agent name
+            const agentSpecs = {
+                'Andrei Moldovan': 'Specialist Apartamente & Ansambluri Noi',
+                'Ioana Popa': 'Specialist Închirieri & Spații Comerciale',
+                'Mihai Bran': 'Specialist Case & Terenuri'
+            };
+
+            const uniqueAgents = [...new Set(dataListings.map(l => l.agent))];
+            let html = '';
+
+            uniqueAgents.forEach(agentName => {
+                // calculate active listings
+                const agentDataUrl = dataListings.find(l => l.agent === agentName);
+                const count = dataListings.filter(l => l.agent === agentName).length;
+                const initials = agentName.split(' ').map(n=>n[0]).join('');
+
+                html += `
+                    <div class="agent-row">
+                        <div class="avatar">${initials}</div>
+                        <div class="agent-row-details">
+                            <h4>${agentName}</h4>
+                            <p>${agentSpecs[agentName] || 'Agent Imobiliar'}</p>
+                            <p style="margin-bottom: 0.5rem;"><i class="fas fa-phone-alt"></i> <a href="tel:${agentDataUrl.agentPhone}" style="color:var(--navy-deep);">${agentDataUrl.agentPhone}</a> | ${agentDataUrl.agentEmail}</p>
+                            <div class="agent-listings-badge">${count} proprietăți în portofoliu</div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        renderGlobalAgents();
+
+        // Standalone Form Validation Simulation
+        document.getElementById('mainContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Se trimite...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                this.reset();
+                document.getElementById('mainFormSuccess').style.display = 'block';
+                setTimeout(() => document.getElementById('mainFormSuccess').style.display = 'none', 5000);
+            }, 1000);
+        });
+
+
+        // -- Modal UI Logic --
+        const modal = document.getElementById('propertyModal');
+        let currentSlide = 0;
+        let slideInterval;
+        let modalImages = [];
+
+        function openModal(id) {
+            const item = dataListings.find(i => i.id === id);
+            if(!item) return;
+
+            // Header info
+            const formatCur = new Intl.NumberFormat('ro-RO').format(item.price);
+            const formatRon = new Intl.NumberFormat('ro-RO').format(item.priceRON);
+            const badgeHtml = item.badge ? `<span class="card-badge" style="position:relative; top:0; left:0; margin-bottom: 1rem; display:inline-block;">${item.badge}</span>` : '';
+            const statusClass = item.status === 'vânzare' ? 'status-vânzare' : 'status-închiriere';
+            const statusName = item.status === 'vânzare' ? 'De Vânzare' : 'De Închiriat';
+
+            document.getElementById('modalHeaderInfo').innerHTML = `
+                ${badgeHtml}
+                <span class="card-status ${statusClass}" style="position:relative; top:0; left:0; display:inline-block; margin-bottom: 1rem; margin-left: ${item.badge?'10px':'0'};">${statusName}</span>
+                <h1 class="modal-title">${item.title}</h1>
+                <div class="modal-loc"><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> ${item.location}, Baia Mare</div>
+                <div style="margin-top: 1.5rem;" class="modal-price">&euro;${formatCur} <span>/ ${formatRon} RON</span></div>
+            `;
+
+            // Specs grid
+            const specMarkup = `
+                <div class="modal-spec"><i class="fas fa-vector-square"></i><div class="modal-spec-text"><span>Suprafață</span><span>${item.surface} mp</span></div></div>
+                <div class="modal-spec"><i class="fas fa-door-open"></i><div class="modal-spec-text"><span>Camere</span><span>${item.rooms || '-'}</span></div></div>
+                <div class="modal-spec"><i class="fas fa-layer-group"></i><div class="modal-spec-text"><span>Etaj</span><span>${item.floor || '-'}</span></div></div>
+                <div class="modal-spec"><i class="fas fa-calendar-alt"></i><div class="modal-spec-text"><span>An construcție</span><span>${item.year || '-'}</span></div></div>
+                <div class="modal-spec"><i class="fas fa-couch"></i><div class="modal-spec-text"><span>Mobilare</span><span>${item.furnished || '-'}</span></div></div>
+                <div class="modal-spec"><i class="fas fa-fire"></i><div class="modal-spec-text"><span>Încălzire</span><span>${item.heating || '-'}</span></div></div>
+                <div class="modal-spec"><i class="fas fa-car"></i><div class="modal-spec-text"><span>Parcare</span><span>${item.parking ? 'Da' : 'Nu'}</span></div></div>
+            `;
+            document.getElementById('modalSpecsGrid').innerHTML = specMarkup;
+
+            // Desc and Features
+            document.getElementById('modalDesc').textContent = item.description;
+            document.getElementById('modalFeatures').innerHTML = item.features.map(f => `<span class="feature-pill">${f}</span>`).join('');
+            document.getElementById('modalMapAddress').textContent = `${item.location}, Baia Mare`;
+
+            // Contact Form
+            const agInitials = item.agent.split(' ').map(n=>n[0]).join('');
+            document.getElementById('modalAgentWrap').innerHTML = `
+                <div class="avatar" style="width:60px; height:60px; font-size:1.5rem;">${agInitials}</div>
+                <div class="modal-agent-name">${item.agent}</div>
+                <div class="modal-agent-contact">
+                    <a href="tel:${item.agentPhone}" style="color:var(--navy-deep); font-weight:600;"><i class="fas fa-phone-alt"></i> ${item.agentPhone}</a><br>
+                    <span style="font-size:0.85rem;">${item.agentEmail}</span>
+                </div>
+                <form class="agent-form" id="modalForm">
+                    <input type="hidden" id="modalFormListingId" value="${item.id}">
+                    <div class="form-group"><input type="text" required placeholder="Numele tău"></div>
+                    <div class="form-group"><input type="tel" required placeholder="Telefon"></div>
+                    <div class="form-group"><input type="email" required placeholder="Email"></div>
+                    <div class="form-group">
+                        <select required>
+                            <option value="">Disponibilitate</option>
+                            <option value="dimineata">Dimineața (9-12)</option>
+                            <option value="pranz">Prânz (12-15)</option>
+                            <option value="dupaamiaza">După-amiaza (15-18)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="3" required>Sunt interesat de proprietatea: ${item.title} (ID: ${item.id})</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-navy">Contactează Agentul</button>
+                    <p id="modalFormSuccess" style="display:none; color: var(--status-sale); margin-top: 1rem; font-size: 0.85rem;"><i class="fas fa-check-circle"></i> Trimis!</p>
+                </form>
+            `;
+
+            // Form Submit Logic for Modal
+            setTimeout(() => { // wait for HTML injection to bind
+                document.getElementById('modalForm').addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const btn = this.querySelector('button');
+                    btn.innerHTML = 'Se trimite...'; btn.disabled = true;
+                    setTimeout(() => {
+                        this.reset();
+                        btn.innerHTML = 'Contactează Agentul'; btn.disabled = false;
+                        document.getElementById('modalFormSuccess').style.display = 'block';
+                    }, 1000);
+                });
+            }, 50);
+
+
+            // Setup Gallery content
+            modalImages = item.images;
+            currentSlide = 0;
+            const galContainer = document.getElementById('modalGallery');
+            // Remove existing slides
+            galContainer.querySelectorAll('.modal-slide').forEach(s => s.remove());
+            
+            modalImages.forEach((gradientStr, index) => {
+                const slide = document.createElement('div');
+                slide.className = `modal-slide ${index === 0 ? 'active' : ''}`;
+                slide.style.background = gradientStr;
+                // Add a placeholder house icon just to feel like a real estate photo
+                slide.style.display = 'flex';
+                slide.style.alignItems = 'center';
+                slide.style.justifyContent = 'center';
+                slide.innerHTML = `<i class="fas fa-home" style="font-size: 5rem; color: rgba(27, 42, 74, 0.1);"></i>`;
+                
+                // insert before the arrows
+                galContainer.insertBefore(slide, galContainer.querySelector('.gallery-prev'));
+            });
+
+            // Rebuild dots
+            const dotsContainer = document.getElementById('modalDots');
+            dotsContainer.innerHTML = '';
+            modalImages.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = `gallery-dot ${index === 0 ? 'active' : ''}`;
+                dot.onclick = () => goToSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+
+            startGalleryAutoPlay();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // stop background scroll
+
+            // Pause hover logic
+            galContainer.onmouseenter = pauseGalleryAutoPlay;
+            galContainer.onmouseleave = startGalleryAutoPlay;
+        }
+
+        window.openModal = openModal; // expose
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            pauseGalleryAutoPlay();
+        }
+        window.closeModal = closeModal;
+
+        // Click outside to close
+        modal.addEventListener('click', (e) => {
+            if(e.target === modal) closeModal();
+        });
+        
+        // Esacpe to close
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        function changeSlide(direction) {
+            goToSlide((currentSlide + direction + modalImages.length) % modalImages.length);
+        }
+        window.changeSlide = changeSlide;
+
+        function goToSlide(index) {
+            const slides = document.querySelectorAll('#modalGallery .modal-slide');
+            const dots = document.querySelectorAll('#modalDots .gallery-dot');
+            if(slides.length === 0) return;
+            
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            
+            currentSlide = index;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+
+        function startGalleryAutoPlay() {
+            pauseGalleryAutoPlay(); // clear existing
+            slideInterval = setInterval(() => { changeSlide(1); }, 3000);
+        }
+
+        function pauseGalleryAutoPlay() {
+            if(slideInterval) clearInterval(slideInterval);
+        }
+
+        // --- Intersection Observer for Fade-in Animation ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Apply simple fade-in CSS globally
+        const style = document.createElement('style');
+        style.innerHTML = `
+            .fade-in-section {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+        `;
+        document.head.appendChild(style);
+
+        document.querySelectorAll('section').forEach(section => {
+            // Don't fade in hero since it's above fold
+            if(!section.classList.contains('hero')) {
+                section.classList.add('fade-in-section');
+                observer.observe(section);
+            }
+        });
+
+    </script>
+</body>
+</html>
