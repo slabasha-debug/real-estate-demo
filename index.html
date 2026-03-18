@@ -204,11 +204,42 @@
             cursor: pointer;
             background: none;
             border: none;
+            z-index: 1100;
+            position: relative;
         }
+
+        /* Mobile Nav Overlay */
+        .nav-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(17, 28, 52, 0.6);
+            z-index: 1050;
+        }
+        .nav-overlay.active { display: block; }
 
         @media (max-width: 768px) {
             .nav-links {
-                display: none; /* Mobile menu logic to be implemented if needed, currently hiding for simplicity */
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background-color: var(--navy-deep);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1100;
+                box-shadow: -8px 0 30px rgba(0,0,0,0.4);
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-links a {
+                font-size: 1.4rem;
             }
             .mobile-toggle {
                 display: block;
@@ -1139,17 +1170,20 @@
 </head>
 <body>
 
+    <!-- Mobile Nav Overlay -->
+    <div class="nav-overlay" id="navOverlay"></div>
+
     <!-- Header Navigation -->
     <header id="mainNav">
         <div class="container nav-container">
             <a href="#" class="logo">Imobiliare<span>Nord</span></a>
-            <nav class="nav-links">
-                <a href="#proprietati">Proprietăți</a>
-                <a href="#agenti">Agenți</a>
-                <a href="#despre">Despre Noi</a>
-                <a href="#contact">Contact</a>
+            <nav class="nav-links" id="navLinks">
+                <a href="#proprietati" class="nav-link-item">Proprietăți</a>
+                <a href="#agenti" class="nav-link-item">Agenți</a>
+                <a href="#despre" class="nav-link-item">Despre Noi</a>
+                <a href="#contact" class="nav-link-item">Contact</a>
             </nav>
-            <button class="mobile-toggle"><i class="fas fa-bars"></i></button>
+            <button class="mobile-toggle" id="mobileToggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
@@ -2616,24 +2650,58 @@
             if(slideInterval) clearInterval(slideInterval);
         }
 
+        // Mobile Navigation Toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinksEl = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+
+        function openMobileNav() {
+            navLinksEl.classList.add('open');
+            navOverlay.classList.add('active');
+            mobileToggle.innerHTML = '<i class="fas fa-times"></i>';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMobileNav() {
+            navLinksEl.classList.remove('open');
+            navOverlay.classList.remove('active');
+            mobileToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = '';
+        }
+
+        mobileToggle.addEventListener('click', () => {
+            if (navLinksEl.classList.contains('open')) {
+                closeMobileNav();
+            } else {
+                openMobileNav();
+            }
+        });
+
+        // Close when clicking overlay or a nav link
+        navOverlay.addEventListener('click', closeMobileNav);
+        document.querySelectorAll('.nav-link-item').forEach(link => {
+            link.addEventListener('click', closeMobileNav);
+        });
+
         // --- Intersection Observer for Fade-in Animation ---
-        const observerOptions = {
+        // Only apply to non-critical sections (NOT properties/listings)
+        const observerOptions2 = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.1
+            threshold: 0.05
         };
 
-        const observer = new IntersectionObserver((entries, observer) => {
+        const sectionObserver = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
-                    observer.unobserve(entry.target);
+                    obs.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, observerOptions2);
 
-        // Apply simple fade-in CSS globally
+        // Apply simple fade-in CSS to select sections
         const style = document.createElement('style');
         style.innerHTML = `
             .fade-in-section {
@@ -2644,11 +2712,16 @@
         `;
         document.head.appendChild(style);
 
+        // Only apply fade-in to sections BELOW the properties section
+        // The properties section (#proprietati) and stats-bar must always be visible
+        const skipFadeIds = ['proprietati', 'mainNav'];
         document.querySelectorAll('section').forEach(section => {
-            // Don't fade in hero since it's above fold
-            if(!section.classList.contains('hero')) {
+            const isHero = section.classList.contains('hero');
+            const isStatBar = section.classList.contains('stats-bar');
+            const isProperties = section.id === 'proprietati';
+            if (!isHero && !isStatBar && !isProperties) {
                 section.classList.add('fade-in-section');
-                observer.observe(section);
+                sectionObserver.observe(section);
             }
         });
 
